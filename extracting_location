@@ -1,0 +1,14 @@
+import {useEffect} from 'react';
+function App() {
+  useEffect(() => {
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition((position) => {
+        console.log("Latitude:", position.coords.latitude);
+        console.log("Longitude:", position.coords.longitude);
+      });
+    }
+  }, []);
+
+  return <h1>Hello</h1>;
+}
+export default App;
