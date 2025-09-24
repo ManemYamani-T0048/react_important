@@ -1,0 +1,60 @@
+import {useEffect} from 'react';
+import data from './data.json';
+export default function App() {
+  useEffect(() => {
+    async function sending() {
+      try {
+        for (let item of data) {
+          const response = await fetch('http://localhost:5000/api/data', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ name: item.name }) // only send "name"
+          });
+
+          const resData = await response.json();
+          console.log('Added:', resData);
+        }
+        alert('All items sent to backend!');
+      } catch (err) {
+        console.error(err);
+      }
+    }
+
+    sending();
+  }, []);
+  return(
+    <h1>hi hello welocme</h1>
+  )
+}
+
+// {
+// const [error,setError]=useState(null);
+// const [data,setData]=useState(null);
+// useEffect(()=>{
+//   async function getValues(){
+//     try{
+//     const response=await fetch('http://localhost:5000/api/datasssssssssss');
+//     if(!response.ok){
+//       throw new Error('data is not fetched')
+//     }
+//     const resData=await response.json();
+    
+//     setData(resData);
+
+//   }
+//   catch(error){
+//     setError({message:error.message||'error occured'});
+//   }
+// }
+//   getValues();
+// },[]);
+// if(error){
+//   return <h1>{error.message}</h1>
+// }
+// return(
+// <>
+// <h1>welcome this is my data</h1>
+// <h1>{JSON.stringify(data, null, 2)}</h1>
+// </>
+// )
+// }
