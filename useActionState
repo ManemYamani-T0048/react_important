@@ -1,0 +1,19 @@
+import {useActionState} from 'react';
+export default function Login(){
+    const [state,formAction,ispending]=useActionState(onSubmit,null);
+    function onSubmit(prevstate,FormData){
+        const name=FormData.get('name');
+        if (!name)
+         return " error:Name is required!";
+        console.log(name);
+        return;
+    }
+    return(
+    <form action={formAction}>
+        <label htmlFor='name'>name:</label>
+        <input id='name' name='name' type='text'></input>
+        <button type='submit'>{ispending?"submitting....":"submit"}</button>
+        {state && <p>{state}</p>}
+    </form>
+    )
+}
