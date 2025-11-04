@@ -1,0 +1,21 @@
+import './App.css'
+
+function App() {
+  function Sample(){
+    const p=window.confirm('are you sure?');
+    if(p){
+      console.log('accepted')
+    }
+    else{
+      console.log('rejected');
+    }
+  }
+
+  return (
+    <>
+      <button onClick={Sample}>click me</button>
+    </>
+  )
+}
+
+export default App
